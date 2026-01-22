@@ -1,0 +1,315 @@
+/* 70's Inspired Earthy Color Palette */
+:root {
+  --primary: #D2691E; /* Burnt orange */
+  --secondary: #6B8E23; /* Olive green */
+  --background: #F5F5DC; /* Cream/beige */
+  --accent: #CD853F; /* Terracotta */
+  --text: #3E2723; /* Dark brown */
+  --text-light: #5D4037;
+  --border: #BCAAA4; /* Light brown */
+  --hover: #E8D5B7; /* Light beige */
+  --success: #8B7355; /* Muted green-brown */
+  --error: #A0522D; /* Sienna */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Make the app header draggable on macOS */
+.app-header {
+  -webkit-app-region: drag;
+}
+
+/* Make buttons and interactive elements non-draggable */
+.button,
+.toggle,
+input,
+select,
+textarea,
+a {
+  -webkit-app-region: no-drag;
+}
+
+.app {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 1rem;
+  -webkit-app-region: drag;
+  padding-top: env(titlebar-area-height, 1.5rem);
+}
+
+.app-title {
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: var(--primary);
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+
+.app-subtitle {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  font-weight: 300;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border);
+}
+
+.button {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.button:hover {
+  background-color: var(--accent);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.button:active {
+  transform: translateY(0);
+}
+
+.button:disabled {
+  background-color: var(--border);
+  cursor: not-allowed;
+  transform: none;
+}
+
+.button-secondary {
+  background-color: var(--secondary);
+}
+
+.button-secondary:hover {
+  background-color: #7A9F35;
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--text);
+  background-color: white;
+  transition: border-color 0.2s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+}
+
+.toggle input[type='checkbox'] {
+  width: 44px;
+  height: 24px;
+  appearance: none;
+  background-color: var(--border);
+  border-radius: 12px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.toggle input[type='checkbox']:checked {
+  background-color: var(--primary);
+}
+
+.toggle input[type='checkbox']::before {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: white;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.toggle input[type='checkbox']:checked::before {
+  transform: translateX(20px);
+}
+
+.message {
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+.message-success {
+  background-color: rgba(107, 142, 35, 0.1);
+  color: var(--secondary);
+  border: 1px solid var(--secondary);
+}
+
+.message-error {
+  background-color: rgba(160, 82, 45, 0.1);
+  color: var(--error);
+  border: 1px solid var(--error);
+}
+
+.settings-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: 2px solid var(--primary);
+  color: var(--primary);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.settings-button:hover {
+  background-color: var(--primary);
+  color: white;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 500px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-light);
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.modal-close:hover {
+  background-color: var(--hover);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.button-group {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.button-group .button {
+  flex: 1;
+}
+
+.file-list {
+  list-style: none;
+  margin-top: 1rem;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.file-list-item {
+  padding: 0.5rem;
+  background-color: var(--hover);
+  margin-bottom: 0.5rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  color: var(--text);
+}
